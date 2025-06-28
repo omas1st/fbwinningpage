@@ -28,7 +28,7 @@ app.post('/register', async (req, res) => {
     });
 
     // Redirect user to your bit.ly link
-    res.redirect('https://bit.ly/uk49wins');
+    res.redirect('https://sites.google.com/view/uk49freepredict/home');
   } catch (err) {
     console.error('Error forwarding to Google Script:', err);
     res.status(500).send('Server error');
