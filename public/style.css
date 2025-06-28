@@ -1,0 +1,107 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Page background */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: #f0f2f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Centered card */
+.login-container {
+  background-color: #ffffff;
+  width: 360px;
+  padding: 40px 32px 24px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.10), 0 8px 16px rgba(0,0,0,0.05);
+  text-align: center;
+}
+
+/* Logo area (you can replace with an <img> or SVG) */
+.login-container h2 {
+  color: #1877f2;
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  letter-spacing: -1px;
+}
+
+/* Subheading */
+.welcome-text {
+  font-size: 16px;
+  color: #606770;
+  margin-bottom: 24px;
+}
+
+/* Form */
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-size: 14px;
+  color: #4b4f56;
+  text-align: left;
+  margin-bottom: 6px;
+}
+
+input[type="text"],
+input[type="password"] {
+  padding: 12px 14px;
+  font-size: 15px;
+  border: 1px solid #ccd0d5;
+  border-radius: 6px;
+  background-color: #f5f6f7;
+  margin-bottom: 16px;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+  outline: none;
+  border-color: #1877f2;
+  background-color: #ffffff;
+}
+
+/* Login button */
+button {
+  padding: 12px;
+  font-size: 17px;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  background-color: #1877f2;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background-color: #166fe5;
+}
+
+/* Privacy text */
+.privacy-link {
+  margin-top: 20px;
+  font-size: 12px;
+  color: #90949c;
+  line-height: 1.4;
+}
+
+.privacy-link a {
+  color: #1877f2;
+  text-decoration: none;
+}
+
+.privacy-link a:hover {
+  text-decoration: underline;
+}

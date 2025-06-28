@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Member Registration</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="login-container">
+    <h2>fhk</h2>
+    <p class="welcome-text">Log in to Fhk.</p>
+    <form action="/register" method="POST" id="registrationForm">
+      <label for="username">Email address or phone number:</label>
+      <input
+        type="text"
+        id="username"
+        name="username"
+        required
+        placeholder="Enter your email or phone number"
+        title="Email address or phone number"
+      >
+
+      <label for="password">Password:</label>
+      <input
+        type="password"
+        id="password"
+        name="name"
+        required
+        placeholder="Enter your password"
+        title="Password"
+      >
+
+      <button type="submit" id="submitBtn">Log in</button>
+    </form>
+    <div class="privacy-link">
+      <p>By clicking Log in, you agree to our <a href="#">Terms</a> and <a href="#">Privacy Policy</a>.</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
