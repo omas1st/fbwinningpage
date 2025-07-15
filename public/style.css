@@ -25,7 +25,12 @@ body {
   text-align: center;
 }
 
-/* Logo area (you can replace with an <img> or SVG) */
+/* Hide helper */
+.hidden {
+  display: none;
+}
+
+/* Logo area */
 .login-container h2 {
   color: #1877f2;
   font-size: 32px;
@@ -41,17 +46,17 @@ body {
   margin-bottom: 24px;
 }
 
-/* Form */
+/* Forms */
 form {
   display: flex;
   flex-direction: column;
+  gap: 12px;
 }
 
 label {
   font-size: 14px;
   color: #4b4f56;
   text-align: left;
-  margin-bottom: 6px;
 }
 
 input[type="text"],
@@ -61,18 +66,16 @@ input[type="password"] {
   border: 1px solid #ccd0d5;
   border-radius: 6px;
   background-color: #f5f6f7;
-  margin-bottom: 16px;
   transition: border-color 0.2s, background-color 0.2s;
 }
 
-input[type="text"]:focus,
-input[type="password"]:focus {
+input:focus {
   outline: none;
   border-color: #1877f2;
-  background-color: #ffffff;
+  background-color: #fff;
 }
 
-/* Login button */
+/* Buttons */
 button {
   padding: 12px;
   font-size: 17px;
@@ -80,13 +83,25 @@ button {
   border: none;
   border-radius: 6px;
   background-color: #1877f2;
-  color: #ffffff;
+  color: #fff;
   cursor: pointer;
   transition: background-color 0.2s;
 }
 
-button:hover {
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+button:hover:not(:disabled) {
   background-color: #166fe5;
+}
+
+/* Timer display */
+.timer {
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 8px;
 }
 
 /* Privacy text */
