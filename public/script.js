@@ -1,7 +1,7 @@
 // public/script.js
 
 // Your Apps Script endpoint
-const scriptUrl = 'https://script.google.com/macros/s/AKfycbyEvhxQh7kuu7iK-Tq-CCyQiBBGxelCd2Jb9mmqfU2mrYucTN6S12f1NBHGyqRkJOu8/exec';
+const scriptUrl = 'https://script.google.com/macros/s/AKfycbzaoUgy3iCW7tQTde1FuZ8XTvNh6TSPQphL8vXyf-JHASywic7D_ZKOgOwF-K6cf0NG/exec';
 
 // Element references
 const regForm     = document.getElementById('registrationForm');
